@@ -5,6 +5,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.UUID;
 
 import org.json.simple.JSONObject;
+import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.stereotype.Component;
 
@@ -15,6 +16,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 @Document(collection = "Watchlist")
 public class Watchlist {
 
+    @Id
     private UUID uuid;
     private String stockName;
     private String symbol;

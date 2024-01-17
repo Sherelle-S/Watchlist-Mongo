@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.cbfacademy.apiassessment.MongoDB.MongoWatchlistRepository;
 import com.cbfacademy.apiassessment.exceptions.InvalidInputException;
+import com.cbfacademy.apiassessment.exceptions.ItemNotFoundException;
 import com.cbfacademy.apiassessment.exceptions.WatchlistDataAccessException;
 import com.cbfacademy.apiassessment.model.Watchlist;
 import com.cbfacademy.apiassessment.service.WatchlistService;
@@ -84,6 +85,14 @@ public class WatchlistController {
     @DeleteMapping(value = "/deleteEntry/{uuid}", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<Watchlist>> deleteWatchlistEntry(@PathVariable UUID uuid) throws IOException{
         log.info("Delete process has begun");
+        try {
+            repo.deleteById(uuid);
+            log.info("Item deleted from mongodDB.");
+        } catch (ItemNotFoundException e) {
+            log.error("Unable to delete entry from mongoDb.", e);
+            throw new ItemNotFoundException("Unable to locate item with uuid " + uuid + "in MongoDb.");
+        }
+        log.info("Deleting entry from JSON.");
         return service.deleteWatchlistEntry(uuid);
     }
 }

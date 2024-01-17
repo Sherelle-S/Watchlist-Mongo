@@ -14,7 +14,6 @@ public class QuicksortWatchlist {
 
         private static final Logger log = LoggerFactory.getLogger(QuicksortWatchlist.class);
 
-
         public List<Watchlist> sortAlgo(List<Watchlist> existingWatchlist){
         quickSort(existingWatchlist, 0, existingWatchlist.size() - 1);
         for(Watchlist watchlist : existingWatchlist) {

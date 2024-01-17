@@ -16,8 +16,9 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 @Component
 public class SortWatchlistByName {
  
-    @Autowired
+    
     private static final Logger log = LoggerFactory.getLogger(SortWatchlistByName.class);
+    @Autowired
     private RunGetWatchlist getWatchlist;
     private QuicksortWatchlist sortAlgo;
     public Object sortedWatchlist;

@@ -27,10 +27,10 @@ public class DeleteEntry {
 
     public ReadExistingWatchlist readList;
     public WriteToJsonFile writeToJson;
-    @Autowired
-    MongoSoftDelete mongoDelete;
-       @Autowired
-    private MongoWatchlistRepository repo;
+    // @Autowired
+    // MongoSoftDelete mongoDelete;
+    //    @Autowired
+    // private MongoWatchlistRepository repo;
 
     @Autowired
     public DeleteEntry(ReadExistingWatchlist readList, WriteToJsonFile writeToJson) {
@@ -50,21 +50,21 @@ public class DeleteEntry {
             log.info("item with the UUID of " + uuid + " has been located.");
         }
 
-        public void deleteEntryFromMongo(String jsonRepo, ObjectMapper mapper, UUID uuid) throws WatchlistDataAccessException{
-             try {
-                readList.readExistingWatchlist(jsonRepo, mapper);
-                repo.deleteById(uuid);
-            } catch (IOException e) {
-                throw new WatchlistDataAccessException("Unable to access watchlist data to delete from MongoDb", e);
-            }
-        }
+        // public void deleteEntryFromMongo(String jsonRepo, ObjectMapper mapper, UUID uuid) throws WatchlistDataAccessException{
+        //      try {
+        //         readList.readExistingWatchlist(jsonRepo, mapper);
+        //         repo.deleteById(uuid);
+        //     } catch (IOException e) {
+        //         throw new WatchlistDataAccessException("Unable to access watchlist data to delete from MongoDb", e);
+        //     }
+        // }
   
         // deletes watchlist entry and update json file.
     public List<Watchlist> deleteEntry(List<Watchlist> existingWatchlist, String jsonRepo, ObjectMapper mapper, UUID uuid){
         try {
             deleteWatchlistItem(existingWatchlist, uuid);
             // deleteEntryFromMongo(jsonRepo, mapper, uuid);
-            mongoDelete.deleteByUuid(uuid);
+            // mongoDelete.deleteByUuid(uuid);
             writeToJson.writeToJson(jsonRepo, mapper, existingWatchlist);
         } catch (ItemNotFoundException e) {
             log.error("Jackson Exception has occurred in while trying to delete watchlist entry.", e.getMessage());

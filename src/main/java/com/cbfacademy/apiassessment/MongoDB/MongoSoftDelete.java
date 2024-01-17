@@ -17,6 +17,8 @@ public class MongoSoftDelete {
 
 
       public void deleteByUuid(UUID uuid) throws WatchlistDataAccessException {
+
+        
     //     Watchlist watchlist = repo.findById(uuid).orElse(null);
     //     if (watchlist != null) {
     //         watchlist.setDeleted(true);

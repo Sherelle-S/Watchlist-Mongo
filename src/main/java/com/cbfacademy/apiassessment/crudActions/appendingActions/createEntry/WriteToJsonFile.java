@@ -20,7 +20,7 @@ import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 @Component
 public class WriteToJsonFile {
 
-    @Autowired
+    // @Autowired
     private static final Logger log = LoggerFactory.getLogger(WriteToJsonFile.class);
 
     public ResponseEntity<?> writeToJson(String jsonRepo, ObjectMapper mapper, List<Watchlist> existingWatchlist) throws StreamWriteException, IOException {

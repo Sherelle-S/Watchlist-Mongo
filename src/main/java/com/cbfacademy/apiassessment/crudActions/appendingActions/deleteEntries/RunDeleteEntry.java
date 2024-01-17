@@ -29,6 +29,7 @@ public class RunDeleteEntry {
         try {
             log.info("Existing list has been read");
             deleteEntry.deleteEntry(existingWatchlist, jsonRepo, mapper, uuid);
+            deleteEntry.deleteEntryFromMongo(jsonRepo, mapper, uuid);
             log.info("Item by uuid " + uuid + " has been located");
             log.info("new watchlist is now {}", existingWatchlist);
             return existingWatchlist;

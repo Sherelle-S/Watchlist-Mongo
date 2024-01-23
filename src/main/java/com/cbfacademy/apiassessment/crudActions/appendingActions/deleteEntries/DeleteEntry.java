@@ -45,6 +45,7 @@ public class DeleteEntry {
                 Watchlist watchlistEntry = iterator.next();
                 if(watchlistEntry.getUuid().equals(uuid)){
                     iterator.remove();
+                    // repo.deleteById(uuid);
                 }
             }
             log.info("item with the UUID of " + uuid + " has been located.");
